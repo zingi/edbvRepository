@@ -36,7 +36,14 @@ function testPictures()
         end
         
         try
-            % feature lippen
+            [gender, percentage] = lipsdetection(results.(fields{i}){2});
+            if sex == 'm'
+                results.(fields{i}){1}(1) = getP(results.(fields{i}){1}(1), percentage);
+            elseif sex == 'w'
+                results.(fields{i}){1}(2) = getP(results.(fields{i}){1}(2), percentage);
+            elseif sex == 'u'
+                results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
+            end 
         catch
             % fehler
         end
