@@ -15,7 +15,7 @@ function [Img, Volume,Longhair, Bounds, Failed] = growHair(Image,foreHeadTop)
     %The image should be scaled to have 100000 pixels
     pixRefSize = 100000;
     %The seedPoints should be set 20 pixels above the foreHead Top
-    foreHeadOffset = 20;
+    foreHeadOffset = 14;
     %Set the offset of the other 4 seedPoints that will be set in
     %regiongrowing
     seedSpread = 5;
