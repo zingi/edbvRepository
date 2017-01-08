@@ -5,10 +5,13 @@ function [gender] = guessGenderForLips(x,y)
 % x,y = upper and lower found white pixels
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 length = abs(y-x);
-if length > 17
+if length > 19
     gender = 'w';
-else
+else if length < 19 && length > 15
+    gender = 'u';    
+    else
     gender = 'm';
+    end
 end
     
 end
