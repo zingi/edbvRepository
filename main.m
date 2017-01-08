@@ -8,8 +8,9 @@ I = imread(fullfile(pn,fn));
 
 while 0==0
     
+    %%%Copy from here
     tic
-    [resultWithText, Volume, Longhair ,boundingVector, failed] = growHair(I);
+    [result, Volume, Longhair ,boundingVector, failed] = growHair(I);
     toc
     
     gender = 'm';
@@ -19,14 +20,11 @@ while 0==0
     
     percentage = 1;
     if failed
-        percentage = 0;
+        gender = 'u';
     end
+    %%%To here
     
-    
-    
-    figure, imshow(resultWithText);
-    
-    rectangle('Position', boundingVector, 'EdgeColor', 'blue');
+    figure, imshow(result);
     
 end
 

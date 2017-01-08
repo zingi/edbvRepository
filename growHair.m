@@ -122,9 +122,12 @@ function [Img, Volume,Longhair, Bounds, Failed] = growHair(Image,foreHeadTop)
     %Add the binary mask on the red channel of the scaled and filtered
     %input image
     gauss(:,:,1) = gauss(:,:,1)+ Binmask;
-    
+     
     %Output the Hair Region Bounds
     Bounds = mainRegion.BoundingBox;
+    
+    % Insert Bounding Rectangle into image
+    gauss = insertShape(gauss,'Rectangle', Bounds,'Color','blue','LineWidth',3);
     
     %Set result image as output
     Img = gauss;
