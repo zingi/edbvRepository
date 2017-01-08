@@ -74,7 +74,7 @@ function testPictures()
                 end
             end
             %[gender, percentage] = hairDetection(results.(fields{i}){2});
-            [gender, percentage] = hair(currentImage,mainRegion.BoundingBox);
+            [gender, percentage] = hair(currentImage);
             if gender == 'm'
                 results.(fields{i}){1}(1) = getP(results.(fields{i}){1}(1), percentage);
             elseif gender == 'w'

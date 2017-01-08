@@ -1,7 +1,10 @@
 function [gender,percentage] = hair(Image,faceBounds)
     
     if ~exist('faceBounds','var')
-        error('faceBounds was not specified')
+        %error('faceBounds was not specified')
+        faceDetector = vision.CascadeObjectDetector();
+        faceBounds = step(faceDetector, Image);
+        
     elseif ~isequal(ndims(faceBounds),4)
         error('faceBounds needs to be a rectangle of 4 parameters')
     end
@@ -11,8 +14,10 @@ function [gender,percentage] = hair(Image,faceBounds)
     foreHeadTop(2) = faceBounds(2);
 
     tic
-    [~, ~, Longhair ,~, failed] = growHair(Image,foreHeadTop);
+    [result, ~, Longhair ,~, failed] = growHair(Image);
     toc
+    
+    imshow(result)
     
     gender = 'm';
     if Longhair
