@@ -21,7 +21,7 @@ function testPictures()
     fields = fieldnames(results);
     
     for i = 1:picCount
-        
+        disp(strcat('Image',num2str(i)))
         try
             [gender, percentage] = augenBraue(results.(fields{i}){2}, logFile);        
             if gender == 'm'
@@ -31,7 +31,8 @@ function testPictures()
             elseif gender == 'u'
                 results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
             end
-        catch
+        catch exception
+           disp(getReport(exception))
            %augen braun fehler 
         end
         
@@ -44,10 +45,12 @@ function testPictures()
             elseif gender == 'u'
                 results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
             end 
-        catch
+        catch exception
+            disp(getReport(exception))
             % fehler
         end
-        
+        [xDim,yDim,~] = size(results.(fields{i}){2});
+        BinMask = zeros(xDim,yDim);
         try
             % feature bart
             [gender, BinMask] = beardRecognition(results.(fields{i}){2});
@@ -58,13 +61,15 @@ function testPictures()
             elseif gender == 'u'
                 results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
             end
-        catch
+        catch exception
+           disp(getReport(exception))
             % fehler
         end
         
         try
             % feature kinn
-        catch
+        catch exception
+            disp(getReport(exception))
             % fehler
         end
         
@@ -81,7 +86,7 @@ function testPictures()
                 end
             end
             
-            [gender, percentage] = hairDetection(results.(fields{i}){2},mainRegion.BoundingBox);
+            [gender, percentage] = hair(results.(fields{i}){2},mainRegion.BoundingBox);
             if gender == 'm'
                 results.(fields{i}){1}(1) = getP(results.(fields{i}){1}(1), percentage);
             elseif gender == 'w'
@@ -89,7 +94,8 @@ function testPictures()
             elseif gender == 'u'
                 results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
             end 
-        catch
+        catch exception
+            disp(getReport(exception))
             % fehler
         end
         
