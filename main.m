@@ -9,17 +9,17 @@ I = imread(fullfile(pn,fn));
 while 0==0
     
     tic
-    [resultWithText, Volume, Longhair ,boundingVector, failed] = growHair(I)
+    [resultWithText, Volume, Longhair ,boundingVector, failed] = growHair(I);
     toc
     
-    rgender = 'm';
+    gender = 'm';
     if Longhair
-        rgender = 'w';
+        gender = 'w';
     end
     
-    rpercentage = 1;
+    percentage = 1;
     if failed
-        rpercentage = 0;
+        percentage = 0;
     end
     
     
