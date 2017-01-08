@@ -62,6 +62,9 @@ function Binmask = growmyregion(Image,seedPoint,maxThreshold,seedSpread)
 
     %Start Recursive region filling
     %Repeat while seedPositionsList is not an empty list
+    % Concept Source: http://en.wikipedia.org/wiki/Region_growing
+    % Concept Source: S65 - S68 Robert Sablatnig, Computer Vision Lab, EVC-23: Image Segmentation
+    %Chapter Region Growing/ Unterlagen: 186822_2016S
     while size(seedPositionsList)
 
         %Get Positon of first element in seedPositionsList

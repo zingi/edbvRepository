@@ -2,9 +2,9 @@ function Img = gaussianimplem(Image,sigma,windowSize)
 
     %Default windowSize is 4
     if ~exist('windowSize','var')
-        windowSize = 4;
+        windowSize = 8;
     elseif isempty(sigma)
-        windowSize = 4;
+        windowSize = 8;
     end
 
     %Default sigma is 1.7
@@ -41,13 +41,16 @@ end
 function Img = gaussianSingleChannel(Image, sigma, windowSize)
 
     %Prepare Meshgrid variables for Kernel Generation
-    [x,y] = meshgrid(-windowSize:windowSize , -windowSize:windowSize);
+    %Concept Source:
+    %"S54 - S55 Robert Sablatnig, Computer Vision Lab, EVC-19: Local
+    %Operations"/ Unterlagen: 186822_2016S
+    [x,y] = meshgrid(-windowSize/2:windowSize/2 , -windowSize/2:windowSize/2);
     
     %Use Impulse formula to calculate Gaussian Kernel
     Kernel= kernelformula(x,y,sigma);
     
     %Convolute the image with the kernel to blur it
-    Img = convolute(Image,Kernel,windowSize);
+    Img = convolute(Image,Kernel,windowSize/2);
     
 end
 
@@ -64,10 +67,16 @@ function Img = convolute(Image,kernel,winSize)
     [xDim,yDim] = size(Image);
     %Add zero padding to the Input Image to prevent Index exceeding Matrix
     %dimensions
+    %As Explained in Source:
+    %"S28 - S32 Robert Sablatnig, Computer Vision Lab, EVC-19: Local
+    %Operations"/ Unterlagen: 186822_2016S
     Image = padarray(Image,[winSize winSize]);
     %Allocate output image memory
     Img = zeros(xDim,yDim);
     %Iterate through every pixel of the Image
+    %As Explained in Source:
+    %"S42 Robert Sablatnig, Computer Vision Lab, EVC-19: Local
+    %Operations" Chapter Convolution/ Unterlagen: 186822_2016S
     for i = 2:xDim-1
         for j = 2:yDim-1
             %Convolute image window with the kernel and save into a new
