@@ -81,7 +81,7 @@ numBlackPixels = sum(~cropedObjectsMask(:));
 % numWhitePixel
 % numBlackPixels
 if numBlackPixels > numberOfAllPixels/4
-    out = 'beard';
-else out = 'no beard';
+    out = 'male';
+else out = 'female';
 end
 
