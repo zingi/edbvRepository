@@ -57,12 +57,16 @@ function Kern = kernelformula(x,y,sigma)
 end
 
 function Img = convolute(Image,kernel,winSize)
+    %Define window height and length
     windowLenght = winSize*2;
-    imSize = size(Image);
+    %Get the image size
+    [xDim,yDim] = size(Image);
     Image = padarray(Image,[winSize winSize]);
+    %Allocate output image memory
     Img = zeros(imSize);
-    for i = 2:imSize(1)-1
-        for j = 2:imSize(2)-1
+    %Iterate through every pixel of the Image
+    for i = 2:xDim-1
+        for j = 2:yDim-1
             Temp = Image(i:i+windowLenght,j:j+windowLenght).*kernel;
             Img(i,j)=sum(Temp(:));
         end

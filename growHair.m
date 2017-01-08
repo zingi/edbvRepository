@@ -39,6 +39,11 @@ function [Img, Volume,Longhair, Bounds, Failed] = growHair(Image,foreHeadTop)
     % downscaled and the algorythm is way faster
     gauss = imresize(gauss,scaleFactor);
     
+    if exist('foreHeadTop','var')
+        foreHeadTop(1) = foreHeadTop(1) * scaleFactor;
+        foreHeadTop(2) = foreHeadTop(2) * scaleFactor;
+    end
+    
     %Setup Scaled image dimensions
     [scaledXDim, scaledYDim, ~] = size(gauss);
     
