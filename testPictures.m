@@ -61,7 +61,14 @@ function testPictures()
         end
         
         try
-            % feature haare
+            [gender, percentage] = hairDetection(results.(fields{i}){2});
+            if gender == 'm'
+                results.(fields{i}){1}(1) = getP(results.(fields{i}){1}(1), percentage);
+            elseif gender == 'w'
+                results.(fields{i}){1}(2) = getP(results.(fields{i}){1}(2), percentage);
+            elseif gender == 'u'
+                results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
+            end 
         catch
             % fehler
         end
