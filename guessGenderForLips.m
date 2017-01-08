@@ -6,9 +6,9 @@ function [gender] = guessGenderForLips(x,y)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 length = abs(y-x);
 if length > 17
-    gender = 'female';
+    gender = 'f';
 else
-    gender = 'male';
+    gender = 'm';
 end
     
 end

@@ -1,4 +1,4 @@
-function[gender] = lipsdetection(image_path)
+function[gender, percentage] = lipsdetection(image_path)
 % Lips Size Detection
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Calculates the distance between upper and lower edge of the lips and
@@ -65,6 +65,7 @@ N=canny(image_gray2, 1, 3.0, 1.5);
 
 [x,y]= findLips(N,coordX,coordY);
 gender = guessGenderForLips(x,y);
+percentage=1;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
