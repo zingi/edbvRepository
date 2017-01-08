@@ -23,12 +23,12 @@ function testPictures()
     for i = 1:picCount
         
         try
-            [sex, percentage] = augenBraue(results.(fields{i}){2}, logFile);        
-            if sex == 'm'
+            [gender, percentage] = augenBraue(results.(fields{i}){2}, logFile);        
+            if gender == 'm'
                 results.(fields{i}){1}(1) = getP(results.(fields{i}){1}(1), percentage);
-            elseif sex == 'w'
+            elseif gender == 'w'
                 results.(fields{i}){1}(2) = getP(results.(fields{i}){1}(2), percentage);
-            elseif sex == 'u'
+            elseif gender == 'u'
                 results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
             end
         catch
@@ -37,11 +37,11 @@ function testPictures()
         
         try
             [gender, percentage] = lipsdetection(results.(fields{i}){2});
-            if sex == 'm'
+            if gender == 'm'
                 results.(fields{i}){1}(1) = getP(results.(fields{i}){1}(1), percentage);
-            elseif sex == 'w'
+            elseif gender == 'w'
                 results.(fields{i}){1}(2) = getP(results.(fields{i}){1}(2), percentage);
-            elseif sex == 'u'
+            elseif gender == 'u'
                 results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
             end 
         catch
