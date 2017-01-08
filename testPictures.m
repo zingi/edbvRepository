@@ -35,7 +35,29 @@ function testPictures()
            %augen braun fehler 
         end
         
-        % andere features testen
+        try
+            % feature lippen
+        catch
+            % fehler
+        end
+        
+        try
+            % feature bart
+        catch
+            % fehler
+        end
+        
+        try
+            % feature kinn
+        catch
+            % fehler
+        end
+        
+        try
+            % feature haare
+        catch
+            % fehler
+        end
         
     end
     
