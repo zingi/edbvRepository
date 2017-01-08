@@ -71,7 +71,7 @@ function testPictures()
         try
             measurements = regionprops(Binmask, 'BoundingBox', 'Area');
     
-            %Setup loop seaching for the biggest area of the found regions
+            %Setup loop seching for the biggest area of the found regions
             mainRegion = measurements(1);
             if ndims(measurements)/2 > 1
                 for regionCnt = 2:ndims(measurements)/2
@@ -81,7 +81,7 @@ function testPictures()
                 end
             end
             
-            [gender, percentage] = hairDetection(results.(fields{i}){2},mainRegion.BoundingBox);
+            [gender, percentage] = hairDetection(results.(fields{i}){2},mainRegion);
             if gender == 'm'
                 results.(fields{i}){1}(1) = getP(results.(fields{i}){1}(1), percentage);
             elseif gender == 'w'

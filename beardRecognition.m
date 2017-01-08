@@ -1,4 +1,4 @@
-function out = beardRecognition(rgbImage)
+function [gender, ObjectsMask] = beardRecognition(rgbImage)
 rgbImage = imresize(rgbImage, [448, NaN]);
 
 % Display the original image.
@@ -81,7 +81,7 @@ numBlackPixels = sum(~cropedObjectsMask(:));
 % numWhitePixel
 % numBlackPixels
 if numBlackPixels > numberOfAllPixels/4
-    out = 'male';
-else out = 'female';
+    gender = 'm';
+else gender = 'f';
 end
 
