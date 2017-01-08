@@ -15,4 +15,4 @@ Um das Testprogramm auszuführen müssen folgende Schritte berücksichtingt werd
 
 4. Wurden alle Bilder verarbeitet können die entsprechneden Fenster geschlossen werden
 
-5. Die Ergebnisse befinden sich nun in der Log Datei "logOutput.txt" des Projektordners 
+5. Die Ergebnisse befinden sich nun in der Log Datei "resultOutput.txt" des Projektordners 
