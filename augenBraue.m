@@ -198,18 +198,13 @@ function [result] = getEdgeImg(bild)
                             1,1,1,1,1;
                             1,1,1,1,1 ];
     
-    %bild = imclose(bild, structuringElement);                  %built-in function
-    
     bild        = myImageClosing(bild, structuringElement);     %own function
 
-    %bild = rgb2gray(bild);                                     %built-in funciton
     bild        = myColor2GrayImage(bild);                      %own function
     
     %figure, imshow(bild); % zeige grau-bild
     
-    %edge_img = edge(bild,'Sobel');                             %built-in function
-    
-    edge_img    = aaronSobel(bild);                              %own function
+    edge_img    = aaronSobel(bild);                             %own function
     
     result      = edge_img;
 end
