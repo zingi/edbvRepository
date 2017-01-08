@@ -1,9 +1,13 @@
 function testPictures()
     picFolder   = 'faces/';
     logFile     = 'logOutput.txt';
+    resultFile  = 'resultOutput.txt';
     results     = struct();
     
     clearTextFile(logFile);
+    clearTextFile(resultFile);
+    writeResults = fopen(resultFile,'a');
+    
     [picPaths, picCount] = scanFolder4Pics(picFolder);
     
     
@@ -21,6 +25,8 @@ function testPictures()
     fields = fieldnames(results);
     
     for i = 1:picCount
+        fprintf(writeResults,'\n bild: %s', results.(fields{i}){2});
+        
         disp(strcat('Image',num2str(i)))
         currentImage = imread(results.(fields{i}){2});
         try
@@ -35,6 +41,8 @@ function testPictures()
                 results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
             end
             toc
+            
+            fprintf(writeResults,'\n eyebrow: \t%s, \t%.2f', gender, percentage);
         catch exception
            disp(getReport(exception))
            %augen braun fehler 
@@ -52,6 +60,8 @@ function testPictures()
                 results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
             end 
             toc
+            
+            fprintf(writeResults,'\n lip: \t\t%s, \t%.2f', gender, percentage);
         catch exception
             disp(getReport(exception))
             % fehler
@@ -69,9 +79,9 @@ function testPictures()
             elseif gender == 'u'
                 results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
             end
-            
             toc
             
+            fprintf(writeResults,'\n beard: \t%s, \t%.2f', gender, percentage);
         catch exception
            disp(getReport(exception))
             % fehler
@@ -108,13 +118,17 @@ function testPictures()
                 results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
             end 
             toc
+            
+            fprintf(writeResults,'\n hair: \t\t%s, \t%.2f', gender, percentage);
         catch exception
             disp(getReport(exception))
             % fehler
         end
         
+        
+        fprintf(writeResults,'\n man: %.1f \t woman: %1.f \t undefined: %1.f \n\n', ...
+            results.(fields{i}){1}(1), results.(fields{i}){1}(2), results.(fields{i}){1}(3) );
     end
-    
 end
 
 function [r] = getP(already, addition)

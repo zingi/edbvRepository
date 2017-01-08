@@ -1,0 +1,184 @@
+
+ bild: faces/alister1.jpg
+ eyebrow: 	u, 	0.50
+ lip: 		m, 	1.00
+ beard: 	m, 	1.00
+ hair: 		m, 	1.00
+ man: 1.0 	 woman: 0 	 undefined: 0 
+
+
+ bild: faces/amellanby5.jpg
+ eyebrow: 	m, 	0.90
+ lip: 		w, 	1.00
+ beard: 	m, 	1.00
+ hair: 		m, 	1.00
+ man: 0.9 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/andrew2.jpg
+ eyebrow: 	w, 	0.75
+ lip: 		m, 	1.00
+ beard: 	m, 	1.00
+ hair: 		m, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/annanena1.jpg
+ eyebrow: 	w, 	0.75
+ lip: 		w, 	1.00
+ beard: 	m, 	1.00
+ hair: 		w, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/barry17.jpg
+ eyebrow: 	m, 	0.60
+ lip: 		w, 	1.00
+ beard: 	m, 	1.00
+ hair: 		w, 	1.00
+ man: 0.6 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/blair1.jpg
+ eyebrow: 	m, 	0.90
+ lip: 		m, 	1.00
+ beard: 	m, 	1.00
+ hair: 		m, 	1.00
+ man: 0.9 	 woman: 0 	 undefined: 0 
+
+
+ bild: faces/derek2.jpg
+ eyebrow: 	m, 	0.60
+ lip: 		w, 	1.00
+ beard: 	m, 	1.00
+ hair: 		u, 	1.00
+ man: 0.6 	 woman: 1 	 undefined: 1 
+
+
+ bild: faces/dsmith1.jpg
+ eyebrow: 	u, 	0.50
+ lip: 		m, 	1.00
+ beard: 	f, 	1.00
+ hair: 		w, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/fiona1.jpg
+ eyebrow: 	m, 	0.60
+ lip: 		u, 	1.00
+ beard: 	m, 	1.00
+ hair: 		w, 	1.00
+ man: 0.6 	 woman: 1 	 undefined: 1 
+
+
+ bild: faces/iroy1.jpg
+ eyebrow: 	m, 	0.60
+ lip: 		w, 	1.00
+ beard: 	m, 	1.00
+ hair: 		m, 	1.00
+ man: 0.6 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/jenni7.jpg
+ eyebrow: 	m, 	0.60
+ lip: 		m, 	1.00
+ beard: 	m, 	1.00
+ hair: 		m, 	1.00
+ man: 0.6 	 woman: 0 	 undefined: 0 
+
+
+ bild: faces/joanna1.jpg
+ eyebrow: 	u, 	0.50
+ lip: 		m, 	1.00
+ beard: 	m, 	1.00
+ hair: 		w, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/kim1.jpg
+ eyebrow: 	w, 	0.90
+ lip: 		m, 	1.00
+ beard: 	m, 	1.00
+ hair: 		w, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/kirsty14.jpg
+ eyebrow: 	u, 	0.50
+ lip: 		w, 	1.00
+ beard: 	m, 	1.00
+ hair: 		w, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/lisa2.jpg
+ eyebrow: 	w, 	0.90
+ lip: 		w, 	1.00
+ beard: 	m, 	1.00
+ hair: 		m, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/marie12.jpg
+ eyebrow: 	m, 	0.60
+ lip: 		w, 	1.00
+ beard: 	m, 	1.00
+ hair: 		w, 	1.00
+ man: 0.6 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/martin1.jpg
+ eyebrow: 	m, 	0.60
+ lip: 		w, 	1.00
+ beard: 	f, 	1.00
+ hair: 		m, 	1.00
+ man: 0.6 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/merilyn1.jpg
+ eyebrow: 	w, 	0.90
+ lip: 		m, 	1.00
+ beard: 	m, 	1.00
+ hair: 		m, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/olive2.jpg
+ eyebrow: 	w, 	0.90
+ lip: 		w, 	1.00
+ beard: 	m, 	1.00
+ hair: 		w, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/paul2.jpg
+ eyebrow: 	m, 	0.90
+ lip: 		m, 	1.00
+ beard: 	m, 	1.00
+ hair: 		m, 	1.00
+ man: 0.9 	 woman: 0 	 undefined: 0 
+
+
+ bild: faces/ruth1.jpg
+ eyebrow: 	w, 	0.90
+ lip: 		w, 	1.00
+ beard: 	m, 	1.00
+ hair: 		w, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/terry_johnstone1.jpg
+ eyebrow: 	u, 	0.50
+ lip: 		w, 	1.00
+ beard: 	f, 	1.00
+ hair: 		m, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
+
+ bild: faces/tracy11.jpg
+ eyebrow: 	w, 	0.90
+ lip: 		w, 	1.00
+ beard: 	m, 	1.00
+ hair: 		w, 	1.00
+ man: 1.0 	 woman: 1 	 undefined: 0 
+
