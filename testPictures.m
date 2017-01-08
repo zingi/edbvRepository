@@ -20,8 +20,9 @@ function testPictures()
     
     fields = fieldnames(results);
     
-    for i = 1:picCount
+    for i = 1:2
         disp(strcat('Image',num2str(i)))
+        currentImage = imread(results.(fields{i}){2});
         try
             [gender, percentage] = augenBraue(results.(fields{i}){2}, logFile);        
             if gender == 'm'
@@ -37,7 +38,7 @@ function testPictures()
         end
         
         try
-            [gender, percentage] = lipsdetection(results.(fields{i}){2});
+            [gender, percentage] = lipsdetection(currentImage);
             if gender == 'm'
                 results.(fields{i}){1}(1) = getP(results.(fields{i}){1}(1), percentage);
             elseif gender == 'w'
@@ -49,11 +50,10 @@ function testPictures()
             disp(getReport(exception))
             % fehler
         end
-        [xDim,yDim,~] = size(results.(fields{i}){2});
-        BinMask = zeros(xDim,yDim);
+
         try
-            % feature bart
-            [gender, BinMask] = beardRecognition(results.(fields{i}){2});
+            %feature bart
+            [gender,Binmask] = beardRecognition(currentImage);
             if gender == 'm'
                 results.(fields{i}){1}(1) = getP(results.(fields{i}){1}(1), percentage);
             elseif gender == 'w'
@@ -61,6 +61,28 @@ function testPictures()
             elseif gender == 'u'
                 results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
             end
+            
+            measurements = regionprops(Binmask, 'BoundingBox', 'Area');
+    
+            %Setup loop seaching for the biggest area of the found regions
+            mainRegion = measurements(1);
+            if ndims(measurements)/2 > 1
+                for regionCnt = 2:ndims(measurements)/2
+                    if(measurements(regionCnt*2).Area > mainRegion.Area)
+                        mainRegion = measurements(regionCnt);
+                    end
+                end
+            end
+            %[gender, percentage] = hairDetection(results.(fields{i}){2});
+            [gender, percentage] = hair(currentImage,mainRegion.BoundingBox);
+            if gender == 'm'
+                results.(fields{i}){1}(1) = getP(results.(fields{i}){1}(1), percentage);
+            elseif gender == 'w'
+                results.(fields{i}){1}(2) = getP(results.(fields{i}){1}(2), percentage);
+            elseif gender == 'u'
+                results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
+            end 
+            
         catch exception
            disp(getReport(exception))
             % fehler
@@ -74,26 +96,7 @@ function testPictures()
         end
         
         try
-            measurements = regionprops(Binmask, 'BoundingBox', 'Area');
-    
-            %Setup loop seaching for the biggest area of the found regions
-            mainRegion = measurements(1);
-            if ndims(measurements)/2 > 1
-                for regionCnt = 2:ndims(measurements)/2
-                    if(measurements(regionCnt*2).Area > mainRegion.Area)
-                        mainRegion = measurements(regionCnt);
-                    end
-                end
-            end
-            
-            [gender, percentage] = hair(results.(fields{i}){2},mainRegion.BoundingBox);
-            if gender == 'm'
-                results.(fields{i}){1}(1) = getP(results.(fields{i}){1}(1), percentage);
-            elseif gender == 'w'
-                results.(fields{i}){1}(2) = getP(results.(fields{i}){1}(2), percentage);
-            elseif gender == 'u'
-                results.(fields{i}){1}(3) = getP(results.(fields{i}){1}(3), percentage);
-            end 
+%             
         catch exception
             disp(getReport(exception))
             % fehler
