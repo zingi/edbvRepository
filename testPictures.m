@@ -20,7 +20,7 @@ function testPictures()
     
     fields = fieldnames(results);
     
-    for i = 1:2
+    for i = 1:picCount
         disp(strcat('Image',num2str(i)))
         currentImage = imread(results.(fields{i}){2});
         try

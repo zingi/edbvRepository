@@ -33,7 +33,7 @@ function [Img, Volume,Longhair, Bounds, Failed] = growHair(Image,foreHeadTop)
     scaleFactor = pixRefSize / (xDim * yDim);
     
     %Filter the image with a gaussian Filter to smoothen image regions
-    gauss = gaussianimplem(Image,3);
+    gauss = gaussianimplem(Image,4);
     
     % Regiongrowing often works better if the image is
     % downscaled and the algorythm is way faster
