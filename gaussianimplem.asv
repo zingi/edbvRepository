@@ -43,16 +43,14 @@ function Img = gaussianSingleChannel(Image, sigma, windowSize)
     %Prepare Meshgrid variables for Kernel Generation
     [x,y] = meshgrid(-windowSize:windowSize , -windowSize:windowSize);
     
-    %Use Impulse formula to calculate Gaussian Kernel
+    %Use Impulse formula to ca
     Kernel= kernelformula(x,y,sigma);
     
-    %Convolute the image with the kernel to blur it
     Img = convolute(Image,Kernel,windowSize);
     
 end
 
 function Kern = kernelformula(x,y,sigma)
-    % Gaussian Impulse formula
     Kern = (1/(2*pi*sigma^2))*exp(-(x.^2+y.^2)/(2*sigma^2));
 end
 
