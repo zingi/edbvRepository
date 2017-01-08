@@ -19,11 +19,6 @@ function [Img, Volume,Longhair, Bounds, Failed] = growHair(Image,foreHeadTop)
     %Set the offset of the other 4 seedPoints that will be set in
     %regiongrowing
     seedSpread = 5;
-    %Factor when it is detected that the algorythm failed
-    failedFactor = 1/2;
-    %Threshold of the Bounding rectangle when the hair is considered as
-    %long
-    longThreshold = 0.9;
     
     %Setup image Dimensions
     [xDim, yDim, ~] = size(Image);
@@ -73,7 +68,7 @@ function [Img, Volume,Longhair, Bounds, Failed] = growHair(Image,foreHeadTop)
     
     %Do Regiongrowing on the image to get binary mask
     tic
-        Binmask = growmyregion(grayImg,seedPos,0.1,seedSpread);
+        Binmask = growmyregion(grayImg,seedPos,0.1);
     toc
     
     %Measure Regions in Binary Mask
@@ -88,45 +83,38 @@ function [Img, Volume,Longhair, Bounds, Failed] = growHair(Image,foreHeadTop)
             end
         end
     end
+
+    boundingVector = mainRegion.BoundingBox;
     
-    %Calculate height/width ratio of the region
-    lenghtratio = mainRegion.BoundingBox(4)/mainRegion.BoundingBox(3);
+    lenghtratio = boundingVector(4)/boundingVector(3);
     
-    %Calculate volume of the hair
-    Volume = sum(sum(sum(Binmask)));
-    
-    %Set if hair is long or not
     Longhair = false;
-    if lenghtratio > longThreshold
+    if lenghtratio > 0.9
         Longhair = true;
     end
     
-    %Check if the algorythm failed, that happens if too much of the
-    %image was found as region -> can not be hair
+    Volume = sum(sum(sum(Binmask)));
+    
+    
     Failed = false;
-    if Volume > (scaledXDim * scaledYDim)*failedFactor
+    if Volume > (scaledXDim * scaledYDim)/2
        Failed = true; 
     end
     
+    resultString = ['Volume:' num2str(Volume) ' LenghtRatio:' num2str(lenghtratio) ' Isfemale:' num2str(Longhair) '::Bounds:' num2str(boundingVector)];
     
-%     resultString = ['Volume:' num2str(Volume) ' LenghtRatio:' num2str(lenghtratio) ' Isfemale:' num2str(Longhair) '::Bounds:' num2str(boundingVector)];
-%     
-%     imageSize = size(Image);
-%     fontsize = cast((imageSize(1)/30),'int32');
-%     if fontsize < 5
-%        fontsize = 5; 
-%     end
-%     
-%     resultWithText = insertText(gauss,[4,4], resultString,'FontSize',fontsize);
+    imageSize = size(Image);
+    fontsize = cast((imageSize(1)/30),'int32');
+    if fontsize < 1
+       fontsize = 1; 
+    end
     
-    %Add the binary mask on the red channel of the scaled and filtered
-    %input image
-    gauss(:,:,1) = gauss(:,:,1)+ Binmask;
+    resultWithText = insertText(gauss,[4,4], resultString,'FontSize',fontsize);
     
-    %Output the Hair Region Bounds
-    Bounds = mainRegion.BoundingBox;
+    resultWithText(:,:,1) = resultWithText(:,:,1)+ Binmask;
     
-    %Set result image as output
-    Img = gauss;
+    Bounds = boundingVector;
+    
+    Img = resultWithText;
     
 end

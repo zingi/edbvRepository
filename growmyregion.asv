@@ -87,8 +87,7 @@ function Binmask = growmyregion(Image,seedPoint,maxThreshold,seedSpread)
                 %Binary Mask
                 Binmask(xNeighbor,yNeighbor) = true;
                 %And add the point to the end of seedPositionsList
-                %For small images (which we should have because of scaling) 
-                %list copying is still a fast option
+                %For small images 
                 seedPositionsList(end+1,:) = [xNeighbor,yNeighbor];
             end
 
