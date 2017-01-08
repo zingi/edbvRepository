@@ -43,26 +43,37 @@ function Img = gaussianSingleChannel(Image, sigma, windowSize)
     %Prepare Meshgrid variables for Kernel Generation
     [x,y] = meshgrid(-windowSize:windowSize , -windowSize:windowSize);
     
-    %Use Impulse formula to ca
+    %Use Impulse formula to calculate Gaussian Kernel
     Kernel= kernelformula(x,y,sigma);
     
+    %Convolute the image with the kernel to blur it
     Img = convolute(Image,Kernel,windowSize);
     
 end
 
 function Kern = kernelformula(x,y,sigma)
+    % Gaussian 2 dimensional formula
+    % Source: http://en.wikipedia.org/wiki/Gaussian_filter#cite_ref-ShapiroStockman_5-0
     Kern = (1/(2*pi*sigma^2))*exp(-(x.^2+y.^2)/(2*sigma^2));
 end
 
 function Img = convolute(Image,kernel,winSize)
+    %Define window height and length
     windowLenght = winSize*2;
-    imSize = size(Image);
+    %Get the image size
+    [xDim,yDim] = size(Image);
+    %
     Image = padarray(Image,[winSize winSize]);
+    %Allocate output image memory
     Img = zeros(imSize);
-    for i = 2:imSize(1)-1
-        for j = 2:imSize(2)-1
-            Temp = Image(i:i+windowLenght,j:j+windowLenght).*kernel;
-            Img(i,j)=sum(Temp(:));
+    %Iterate through every pixel of the Image
+    for i = 2:xDim-1
+        for j = 2:yDim-1
+            %Convolute image window with the kernel and save into a new
+            %matrix
+            filteredWindow = Image(i:i+windowLenght,j:j+windowLenght).*kernel;
+            %Sum together weihted results for the sprecified pixel
+            Img(i,j)=sum(filteredWindow(:));
         end
     end
 end

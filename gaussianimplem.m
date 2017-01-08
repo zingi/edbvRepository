@@ -52,7 +52,8 @@ function Img = gaussianSingleChannel(Image, sigma, windowSize)
 end
 
 function Kern = kernelformula(x,y,sigma)
-    % Gaussian Impulse formula
+    % Gaussian 2 dimensional formula
+    % Source: http://en.wikipedia.org/wiki/Gaussian_filter#cite_ref-ShapiroStockman_5-0
     Kern = (1/(2*pi*sigma^2))*exp(-(x.^2+y.^2)/(2*sigma^2));
 end
 
@@ -61,14 +62,19 @@ function Img = convolute(Image,kernel,winSize)
     windowLenght = winSize*2;
     %Get the image size
     [xDim,yDim] = size(Image);
+    %Add zero padding to the Input Image to prevent Index exceeding Matrix
+    %dimensions
     Image = padarray(Image,[winSize winSize]);
     %Allocate output image memory
-    Img = zeros(imSize);
+    Img = zeros(xDim,yDim);
     %Iterate through every pixel of the Image
     for i = 2:xDim-1
         for j = 2:yDim-1
-            Temp = Image(i:i+windowLenght,j:j+windowLenght).*kernel;
-            Img(i,j)=sum(Temp(:));
+            %Convolute image window with the kernel and save into a new
+            %matrix
+            filteredWindow = Image(i:i+windowLenght,j:j+windowLenght).*kernel;
+            %Sum together weihted results for the sprecified pixel
+            Img(i,j)=sum(filteredWindow(:));
         end
     end
 end
