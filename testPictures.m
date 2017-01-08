@@ -129,6 +129,8 @@ function testPictures()
         fprintf(writeResults,'\n man: %.1f \t woman: %1.f \t undefined: %1.f \n\n', ...
             results.(fields{i}){1}(1), results.(fields{i}){1}(2), results.(fields{i}){1}(3) );
     end
+    
+    fclose('all');
 end
 
 function [r] = getP(already, addition)
